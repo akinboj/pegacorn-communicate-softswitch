@@ -117,6 +117,28 @@ RUN wget -O - https://files.freeswitch.org/repo/deb/debian-release/fsstretch-arc
     && find /etc/freeswitch/autoload_configs/event_socket.conf.xml -type f -exec sed -i 's/::/127.0.0.1/g' {} \; \
     && mkdir -p /run/php/ \
     && apt-get clean
+
+# Configure TLS for FreeSwitch
+RUN mkdir -p /etc/freeswitch/tls
+COPY wss.pem /etc/freeswitch/tls/wss.pem
+
+# Configure SIP
+COPY internal.xml /etc/freeswitch/sip_profiles/internal.xml
+COPY verto.conf.xml /etc/freeswitch/autoload_configs/verto.conf.xml
+# I'm doing this to test WebRTC - https://freeswitch.org/confluence/display/FREESWITCH/mod_verto
+COPY 1000.xml /etc/freeswitch/directory/default/1000.xml
+COPY conference.conf.xml /etc/freeswitch/autoload_configs/conference.conf.xml
+COPY default.xml /etc/freeswitch/directory/default.xml
+
+# Configure https for Nginx web server
+RUN touch /etc/nginx/sites-available/pegacorn-communicate.australiaeast.cloudapp.azure.com
+COPY default.conf /
+RUN cat default.conf > /etc/nginx/sites-available/pegacorn-communicate.australiaeast.cloudapp.azure.com \
+	&& ln -s /etc/nginx/sites-available/pegacorn-communicate.australiaeast.cloudapp.azure.com /etc/nginx/sites-enabled/pegacorn-communicate.australiaeast.cloudapp.azure.com \
+	&& ln -s /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/private/pegacorn-communicate-freeswitch.site-a.key \
+	&& ln -s /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/ssl/certs/pegacorn-communicate-freeswitch.site-a.crt \
+	&& rm /etc/nginx/sites-enabled/default \
+	&& rm default.conf
         
 # Date-time build argument
 ARG IMAGE_BUILD_TIMESTAMP

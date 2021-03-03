@@ -29,6 +29,8 @@ spec:
     name: https
   - port: 8021
     name: freeswitch-cli
+  - port: 7443
+    name: webrtc
   selector:
     app: {{ .Values.serviceName }}
     provider: fabric8
