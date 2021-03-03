@@ -20,25 +20,25 @@ EXPOSE 2855-2856/tcp
 RUN apt-get update \
 	&& apt-get upgrade -y \
 	&& apt-get install -y --allow-unauthenticated \ 		
-	ca-certificates \ 		
-	git \
-	ssl-cert \
-	ghostscript \
-	libtiff5-dev \
-	libtiff-tools \
-	nginx \
-	wget \
-	curl \
-	openssh-server \
-	supervisor \
-	net-tools \
-	gnupg2 \
-	netcat \
-	mariadb-client \
-	lsb-release \
 	apt-transport-https \
 	bsdmainutils \
-	sudo
+	ca-certificates \
+	curl \
+	ghostscript \		
+	git \
+	gnupg2 \
+	libtiff5-dev \
+	libtiff-tools \
+	lsb-release \
+	mariadb-client \
+	netcat \
+	net-tools \
+	nginx \
+	openssh-server \
+	ssl-cert \
+	sudo \
+	supervisor \
+	wget
 
 # Begin freeswitch software install
 # https://freeswitch.org/confluence/display/FREESWITCH/Debian+10+Buster
