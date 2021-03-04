@@ -1,3 +1,4 @@
+<!-- These settings were copied from: https://freeswitch.org/confluence/display/FREESWITCH/mod_verto -->
 <configuration name="verto.conf" description="HTML5 Verto Endpoint">
   <settings>
     <param name="debug" value="10"/>
@@ -5,7 +6,7 @@
     <param name="detach-timeout-sec" value="120"/>
   </settings>
   <profiles>
-    <profile name="mine">
+    <profile name="pegacorn">
       <param name="bind-local" value="0.0.0.0:8081"/>
       <param name="bind-local" value="0.0.0.0:8082" secure="true"/>
       <param name="secure-combined" value="/etc/freeswitch/tls/wss.pem"/>

@@ -18,19 +18,31 @@ metadata:
     group: net.fhirbox.pegacorn
   name: {{ .Values.serviceName }}
 spec:
-  type: {{ .Values.serviceType | default "LoadBalancer" }}
+  type: {{ .Values.serviceType | default "NodePort" }}
   {{- if (.Values.loadBalancerIP) }} 
   loadBalancerIP: {{ .Values.loadBalancerIP }}
   {{- end }}
   ports:
   - port: 80
     name: http
+    protocol: TCP
   - port: 443
     name: https
+    protocol: TCP
   - port: 8021
     name: freeswitch-cli
+    protocol: TCP
   - port: 7443
     name: webrtc
+    protocol: TCP
+    targetPort: 7443
+  - port: 5060
+    name: sipinternaltcp
+    protocol: TCP
+  - port: 5060
+    name: sipinternaludp
+    protocol: UDP
+    
   selector:
     app: {{ .Values.serviceName }}
     provider: fabric8

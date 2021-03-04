@@ -103,7 +103,9 @@ spec:
         - mountPath: /etc/ssl/private
           name: certkey
         - mountPath: /etc/ssl/certs
-          name: cert  
+          name: cert
+        - mountPath: /etc/freeswitch/tls
+          name: pemkey
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds | default 30 }}
       volumes:
       - name: certkey
@@ -112,4 +114,7 @@ spec:
       - name: cert
         hostPath:
           path: {{ .Values.hostPathCert }}
+      - name: pemkey
+        hostPath:
+          path: {{ .Values.hostPathPemKey }}
 

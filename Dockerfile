@@ -118,15 +118,15 @@ RUN wget -O - https://files.freeswitch.org/repo/deb/debian-release/fsstretch-arc
     && mkdir -p /run/php/ \
     && apt-get clean
 
-# Configure TLS for FreeSwitch
+# Configure TLS for FreeSwitch -- create folder to mount pem file
 RUN mkdir -p /etc/freeswitch/tls
-COPY wss.pem /etc/freeswitch/tls/wss.pem
 
 # Configure SIP
 COPY internal.xml /etc/freeswitch/sip_profiles/internal.xml
 COPY verto.conf.xml /etc/freeswitch/autoload_configs/verto.conf.xml
-# I'm doing this to test WebRTC - https://freeswitch.org/confluence/display/FREESWITCH/mod_verto
-COPY 1000.xml /etc/freeswitch/directory/default/1000.xml
+
+# Test WebRTC - https://freeswitch.org/confluence/display/FREESWITCH/mod_verto
+COPY directoryusers /etc/freeswitch/directory/default/
 COPY conference.conf.xml /etc/freeswitch/autoload_configs/conference.conf.xml
 COPY default.xml /etc/freeswitch/directory/default.xml
 
