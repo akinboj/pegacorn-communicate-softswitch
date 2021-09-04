@@ -70,12 +70,12 @@ spec:
     name: verto
     protocol: TCP
     targetPort: 8081
-    nodePort: 30855
+    nodePort: 30856
   - port: 8082
     name: verto-2
     protocol: TCP
     targetPort: 8082
-    nodePort: 30856
+    nodePort: 30857
   selector:
     app: {{ .Values.serviceName }}
     provider: fabric8
