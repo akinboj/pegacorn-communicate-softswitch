@@ -35,6 +35,7 @@ RUN apt-get update \
 	ssl-cert \
 	sudo \
 	supervisor \
+	nano \
 	wget
 
 # Begin freeswitch software install
