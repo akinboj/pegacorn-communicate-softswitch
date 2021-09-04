@@ -46,6 +46,11 @@ spec:
     protocol: TCP
     targetPort: 5060
     nodePort: 30427
+  - port: 5061
+    name: sipinternaltls
+    protocol: TCP
+    targetPort: 5061
+    nodePort: 30428
   - port: 5070
     name: sipnatcp
     protocol: TCP
@@ -56,6 +61,11 @@ spec:
     protocol: TCP
     targetPort: 5080
     nodePort: 30854
+  - port: 5081
+    name: sipexternaltls
+    protocol: TCP
+    targetPort: 5081
+    nodePort: 30855
   - port: 8081
     name: verto
     protocol: TCP

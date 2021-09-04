@@ -164,7 +164,7 @@
     <!-- used to share presence info across sofia profiles -->
     <!-- Name of the db to use for this profile -->
     <!--<param name="dbname" value="share_presence"/>-->
-    <param name="presence-hosts" value="58.109.127.40"/>
+    <param name="presence-hosts" value="13.75.163.94"/>
     <param name="presence-privacy" value="$${presence_privacy}"/>
     <!-- ************************************************* -->
 
@@ -192,7 +192,7 @@
     <!-- TLS: disabled by default, set to "true" to enable -->
     <param name="tls" value="$${internal_ssl_enable}"/>
     <!-- Set to true to not bind on the normal sip-port but only on the TLS port -->
-    <param name="tls-only" value="false"/>
+    <param name="tls-only" value="true"/>
     <!-- additional bind parameters for TLS -->
     <param name="tls-bind-params" value="transport=tls"/>
     <!-- Port to listen on for TLS requests. (5061 will be used if unspecified) -->
@@ -282,8 +282,8 @@
          auto                  - Use guessed ip.
          auto-nat              - Use ip learned from NAT-PMP or UPNP
     -->
-    <param name="ext-rtp-ip" value="58.109.127.40"/>
-    <param name="ext-sip-ip" value="58.109.127.40"/>
+    <param name="ext-rtp-ip" value="13.75.163.94"/>
+    <param name="ext-sip-ip" value="13.75.163.94"/>
 
     <!-- rtp inactivity timeout -->
     <param name="rtp-timeout-sec" value="300"/>
