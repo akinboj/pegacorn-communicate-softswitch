@@ -75,7 +75,7 @@ spec:
         imagePullPolicy: {{ .Values.imagePullPolicy | default "IfNotPresent" }}
         livenessProbe:
           tcpSocket:
-            port: 5060
+            port: 5061
           initialDelaySeconds: 30
         name: freeswitch
         ports:
@@ -117,7 +117,7 @@ spec:
           protocol: TCP
         readinessProbe:
           tcpSocket:
-            port: 5060
+            port: 5061
           initialDelaySeconds: 30
         volumeMounts:
         - mountPath: /etc/ssl/private
