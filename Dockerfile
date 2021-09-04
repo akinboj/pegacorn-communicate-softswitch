@@ -112,6 +112,7 @@ RUN wget -O - https://files.freeswitch.org/repo/deb/debian-release/fsstretch-arc
     && chown -R freeswitch:freeswitch /var/log/freeswitch \
     && chmod -R ug+rw /var/log/freeswitch \
     && find /var/log/freeswitch -type d -exec chmod 2770 {} \; \
+    && find /etc/freeswitch/autoload_configs/event_socket.conf.xml -type f -exec sed -i 's/::/0.0.0.0/g' {} \; \
     && mkdir -p /run/php/ \
     && apt-get clean
 
