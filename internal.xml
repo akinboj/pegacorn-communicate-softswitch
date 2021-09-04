@@ -77,9 +77,9 @@
         If such crash occurs, FreeSWITCH will dump core if allowed. The
         stacktrace will include function watchdog_triggered_abort().
     -->
-    <!-- <param name="watchdog-enabled" value="no"/>
+    <param name="watchdog-enabled" value="no"/>
     <param name="watchdog-step-timeout" value="30000"/>
-    <param name="watchdog-event-timeout" value="30000"/> -->
+    <param name="watchdog-event-timeout" value="30000"/>
 
     <param name="log-auth-failures" value="false"/>
     <param name="forward-unsolicited-mwi-notify" value="false"/>
