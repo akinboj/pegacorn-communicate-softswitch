@@ -13,7 +13,8 @@ EXPOSE 5066/tcp 7443/tcp
 EXPOSE 8021/tcp
 EXPOSE 8081-8082/tcp
 EXPOSE 64535-65535/udp
-EXPOSE 16384-32768/udp
+#EXPOSE 16384-32768/udp
+EXPOSE 31316-31326/udp
 EXPOSE 2855-2856/tcp
 
 # Install Required Dependencies	
@@ -123,7 +124,10 @@ RUN mkdir -p /etc/freeswitch/tls
 
 # Configure SIP
 COPY internal.xml /etc/freeswitch/sip_profiles/internal.xml
+COPY external.xml /etc/freeswitch/sip_profiles/external.xml
 COPY verto.conf.xml /etc/freeswitch/autoload_configs/verto.conf.xml
+COPY vars.xml /etc/freeswitch/vars.xml
+COPY switch.conf.xml /etc/freeswitch/autoload_configs/switch.conf.xml
 
 # Test WebRTC - https://freeswitch.org/confluence/display/FREESWITCH/mod_verto
 COPY directoryusers /etc/freeswitch/directory/default/
@@ -131,12 +135,12 @@ COPY conference.conf.xml /etc/freeswitch/autoload_configs/conference.conf.xml
 COPY default.xml /etc/freeswitch/directory/default.xml
 
 # Configure https for Nginx web server
-RUN touch /etc/nginx/sites-available/pegacorn-communicate.australiaeast.cloudapp.azure.com
+RUN touch /etc/nginx/sites-available/whispers.fhirfactory.net
 COPY default.conf /
-RUN cat default.conf > /etc/nginx/sites-available/pegacorn-communicate.australiaeast.cloudapp.azure.com \
-	&& ln -s /etc/nginx/sites-available/pegacorn-communicate.australiaeast.cloudapp.azure.com /etc/nginx/sites-enabled/pegacorn-communicate.australiaeast.cloudapp.azure.com \
-	&& ln -s /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/private/pegacorn-communicate-freeswitch.site-a.key \
-	&& ln -s /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/ssl/certs/pegacorn-communicate-freeswitch.site-a.crt \
+RUN cat default.conf > /etc/nginx/sites-available/whispers.fhirfactory.net \
+	&& ln -s /etc/nginx/sites-available/whispers.fhirfactory.net /etc/nginx/sites-enabled/whispers.fhirfactory.net \
+	&& ln -s /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/private/pegacorn-communicate-whispers.site-a.key \
+	&& ln -s /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/ssl/certs/pegacorn-communicate-whispers.site-a.crt \
 	&& rm /etc/nginx/sites-enabled/default \
 	&& rm default.conf
         
