@@ -85,6 +85,9 @@ spec:
         - containerPort: 443
           name: https
           protocol: TCP
+        - containerPort: 8000
+          name: freeswitch-rtp
+          protocol: TCP
         - containerPort: 8021
           name: freeswitch-cli
           protocol: TCP

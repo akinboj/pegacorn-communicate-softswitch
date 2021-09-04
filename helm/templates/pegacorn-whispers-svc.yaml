@@ -76,6 +76,11 @@ spec:
     protocol: TCP
     targetPort: 8082
     nodePort: 30847
+  - port: 8000
+    name: freeswitch-rtp
+    protocol: TCP
+    targetPort: 8000
+    nodePort: 30848
   selector:
     app: {{ .Values.serviceName }}
     provider: fabric8
