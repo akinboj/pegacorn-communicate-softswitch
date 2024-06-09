@@ -1,0 +1,4 @@
+# Softswitch server (FreeSwitch)
+docker build --rm --build-arg IMAGE_BUILD_TIMESTAMP="%date% %time%" -t pegacorn-communicate-whispers:1.0.0-snapshot .
+
+helm upgrade pegacorn-communicate-whispers-site-a --install --namespace site-a --set serviceName=pegacorn-communicate-whispers,imagePullPolicy=Never,imageTag=1.0.0-snapshot,hostPathCert=/data/certificates,hostPathKey=/data/certificates,hostPathPemKey=/data/certificates,numOfPods=1 helm
